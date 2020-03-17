@@ -3,15 +3,16 @@ FROM debian:latest
 
 # Install packages
 RUN apt-get update
-RUN apt-get install -y python3 \
-			python3-pip \
-			python3-rpi.gpio \
-			git \
-			libwxgtk3.0-dev \
-			libreadline-dev
+RUN apt-get install -y --no-install-recommends \
+		python3 \
+		python3-setuptools \
+		python3-pip \
+		git \
+		libwxgtk3.0-dev \
+		libreadline-dev
 
 # Install Python packages
-RUN pip3 install pyserial
+RUN pip3 install pyserial RPi.GPIO
 
 # Clone BOSSA project, install, and verify
 RUN git clone https://github.com/shumatech/BOSSA.git
